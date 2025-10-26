@@ -7,13 +7,13 @@ RUN pip install uv
 WORKDIR /work
 
 # Step 1: Copy dependency files FIRST (for cache optimization)
-COPY pyproject.toml uv.lock ./
+COPY . .
 
 # Step 2: Install dependencies (this layer will be cached)
 RUN uv sync --frozen
 
 # Step 3: Copy application code AFTER (changes frequently)
-COPY main.py ./
+
 
 # Expose port
 EXPOSE 8000
